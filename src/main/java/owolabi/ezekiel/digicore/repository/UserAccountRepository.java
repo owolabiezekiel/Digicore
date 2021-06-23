@@ -37,7 +37,6 @@ public class UserAccountRepository {
   public boolean checkAccountNumberExists(String accountNumber){
     for(Map.Entry<String, UserAccount> account :
         userAccounts.entrySet()){
-      System.out.println("Account Number: " + account.getKey());
       if(account.getValue().getAccountNumber().equalsIgnoreCase(accountNumber)){
         return true;
       }

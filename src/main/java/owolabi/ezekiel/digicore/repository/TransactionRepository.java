@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import owolabi.ezekiel.digicore.entities.Transaction;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Service
 public class TransactionRepository {
