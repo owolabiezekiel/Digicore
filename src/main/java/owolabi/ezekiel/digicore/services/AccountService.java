@@ -28,7 +28,6 @@ public class AccountService {
     transaction.setTransactionBalance(balance);
     transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString());
     transaction.setTransactionDate(new Date());
-
     return transactionRepository.createTransaction(transaction);
   }
 
@@ -41,7 +40,18 @@ public class AccountService {
     transaction.setTransactionBalance(balance);
     transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString());
     transaction.setTransactionDate(new Date());
+    return transactionRepository.createTransaction(transaction);
+  }
 
+  public Transaction withdraw(String accountNumber, double amount){
+    double balance = userAccountRepository.debitAccount(accountNumber, amount);
+    Transaction transaction = new Transaction();
+    transaction.setAccountNumber(accountNumber);
+    transaction.setTransactionType(TransactionType.WITHDRAWAL);
+    transaction.setAmount(amount);
+    transaction.setTransactionBalance(balance);
+    transaction.setNarration("I withdrew " + amount + " Naira on " + new Date().toString());
+    transaction.setTransactionDate(new Date());
     return transactionRepository.createTransaction(transaction);
   }
 }

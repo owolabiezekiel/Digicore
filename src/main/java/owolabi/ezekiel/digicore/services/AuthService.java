@@ -21,10 +21,10 @@ public class AuthService {
     return userAccountRepository.saveUser(userSignUpDto);
   }
 
-  public UserAccount login(UserLoginRequestDto userLoginRequestDto){
-    UserAccount userAccount = findByAccountNumber(userLoginRequestDto.getAccountNumber());
+  public UserAccount login(String accountNumber, String password){
+    UserAccount userAccount = findByAccountNumber(accountNumber);
     if(userAccount != null){
-      if(passwordEncoder.matches(userLoginRequestDto.getAccountPassword(), userAccount.getAccountPassword())){
+      if(passwordEncoder.matches(password, userAccount.getAccountPassword())){
         return userAccount;
       }
     }

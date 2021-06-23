@@ -9,9 +9,6 @@ import owolabi.ezekiel.digicore.dtos.*;
 import owolabi.ezekiel.digicore.entities.UserAccount;
 import owolabi.ezekiel.digicore.services.AuthService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -49,7 +46,7 @@ public class AuthController {
 
   @PostMapping("/login")
   public ResponseEntity<Object> loginUser(@RequestBody UserLoginRequestDto userLoginRequestDto) {
-    UserAccount userAccount = authService.login(userLoginRequestDto);
+    UserAccount userAccount = authService.login(userLoginRequestDto.getAccountNumber(), userLoginRequestDto.getAccountPassword());
     if (userAccount != null) {
       String token = jwtProvider.generateToken(userLoginRequestDto.getAccountNumber());
       return ResponseEntity.status(HttpStatus.OK).body(new UserLoginResponse(true, token));

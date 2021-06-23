@@ -53,6 +53,14 @@ public class UserAccountRepository {
     return balance;
   }
 
+  public double debitAccount(String accountNumber, double amount){
+    UserAccount accountToDebit = userAccounts.get(accountNumber);
+    accountToDebit.setBalance(accountToDebit.getBalance() - amount);
+    double balance = accountToDebit.getBalance();
+    userAccounts.put(accountNumber, accountToDebit);
+    return balance;
+  }
+
   public double creditAnotherAccount(String accountNumberToCredit, String accountNumberToDebit, double amount){
     UserAccount accountToCredit = userAccounts.get(accountNumberToCredit);
     UserAccount accountToDebit = userAccounts.get(accountNumberToDebit);
