@@ -3,12 +3,12 @@ package owolabi.ezekiel.digicore.repository;
 import org.springframework.stereotype.Service;
 import owolabi.ezekiel.digicore.dtos.UserSignUpRequestDto;
 import owolabi.ezekiel.digicore.entities.UserAccount;
-
-import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class UserAccountRepository {
-  public static ArrayList<UserAccount> userAccounts = new ArrayList<>();
+  public static Map<String, UserAccount> userAccounts = new HashMap<>();
 
   public UserAccount saveUser(UserSignUpRequestDto signUpDetails){
     UserAccount userAccount = new UserAccount();
@@ -16,22 +16,18 @@ public class UserAccountRepository {
     userAccount.setAccountPassword(signUpDetails.getAccountPassword());
     userAccount.setBalance(signUpDetails.getInitialDeposit());
     userAccount.setAccountNumber("00000000" + (userAccounts.size() + 1));
-    userAccounts.add(userAccount);
+    userAccounts.put(userAccount.getAccountNumber(), userAccount);
     return userAccount;
   }
 
   public UserAccount getUserByAccountNumber(String accountNumber){
-    for(UserAccount userAccount: userAccounts){
-      if(userAccount.getAccountNumber().equalsIgnoreCase(accountNumber)){
-        return userAccount;
-      }
-    }
-    return null;
+    return userAccounts.getOrDefault(accountNumber, null);
   }
 
   public boolean checkAccountExists(String accountName){
-    for(UserAccount userAccount: userAccounts){
-      if(userAccount.getAccountName().equalsIgnoreCase(accountName)){
+    for(Map.Entry<String, UserAccount> account :
+        userAccounts.entrySet()){
+      if(account.getValue().getAccountName().equalsIgnoreCase(accountName)){
         return true;
       }
     }
@@ -39,15 +35,36 @@ public class UserAccountRepository {
   }
 
   public boolean checkAccountNumberExists(String accountNumber){
-    for(UserAccount userAccount: userAccounts){
-      if(userAccount.getAccountNumber().equalsIgnoreCase(accountNumber)){
+    for(Map.Entry<String, UserAccount> account :
+        userAccounts.entrySet()){
+      System.out.println("Account Number: " + account.getKey());
+      if(account.getValue().getAccountNumber().equalsIgnoreCase(accountNumber)){
         return true;
       }
     }
     return false;
   }
 
-  public ArrayList<UserAccount> getAllUserAccounts(){
+  public double creditMyAccount(String accountNumber, double amount){
+    UserAccount accountToCredit = userAccounts.get(accountNumber);
+    accountToCredit.setBalance(accountToCredit.getBalance() + amount);
+    double balance = accountToCredit.getBalance();
+    userAccounts.put(accountNumber, accountToCredit);
+    return balance;
+  }
+
+  public double creditAnotherAccount(String accountNumberToCredit, String accountNumberToDebit, double amount){
+    UserAccount accountToCredit = userAccounts.get(accountNumberToCredit);
+    UserAccount accountToDebit = userAccounts.get(accountNumberToDebit);
+    accountToCredit.setBalance(accountToCredit.getBalance() + amount);
+    accountToDebit.setBalance(accountToDebit.getBalance() - amount);
+    double balance = accountToDebit.getBalance();
+    userAccounts.put(accountNumberToCredit, accountToCredit);
+    userAccounts.put(accountNumberToDebit, accountToDebit);
+    return balance;
+  }
+
+  public Map<String, UserAccount> getAllUserAccounts(){
     return userAccounts;
   }
 

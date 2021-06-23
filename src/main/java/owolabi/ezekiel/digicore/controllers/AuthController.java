@@ -10,6 +10,8 @@ import owolabi.ezekiel.digicore.entities.UserAccount;
 import owolabi.ezekiel.digicore.services.AuthService;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequestMapping(path = "/auth")
@@ -54,15 +56,5 @@ public class AuthController {
     }
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "User with account number " + userLoginRequestDto.getAccountNumber()
         + " not found"));
-  }
-
-  @GetMapping("/allaccounts")
-  public void getAllAccounts() {
-    System.out.println("Number of Accounts: " + authService.getNumberOfAccounts());
-    ArrayList<UserAccount> allUsers = authService.getAllUserAccounts();
-    for (UserAccount userAccount : allUsers) {
-      System.out.println("|" + userAccount.getAccountName() + "|" + userAccount.getAccountPassword() + "|" + userAccount.getAccountNumber() + "|"
-          + userAccount.getBalance());
-    }
   }
 }

@@ -8,7 +8,6 @@ import owolabi.ezekiel.digicore.dtos.UserSignUpRequestDto;
 import owolabi.ezekiel.digicore.entities.UserAccount;
 import owolabi.ezekiel.digicore.repository.UserAccountRepository;
 
-import java.util.ArrayList;
 
 @Service
 public class AuthService {
@@ -43,13 +42,4 @@ public class AuthService {
   public UserAccount findByAccountNumber(String accountNumber){
     return userAccountRepository.getUserByAccountNumber(accountNumber);
   }
-
-  public ArrayList<UserAccount> getAllUserAccounts(){
-    return userAccountRepository.getAllUserAccounts();
-  }
-
-  public int getNumberOfAccounts(){
-    return userAccountRepository.accountCount();
-  }
-
 }
