@@ -32,6 +32,7 @@ public class AuthController {
     }
 
 
+
     if(userSignUpDetails.getInitialDeposit() < 500.0){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "Minimum initial balance required is 500"));
     }
@@ -39,7 +40,7 @@ public class AuthController {
 
     UserAccount userAccount = authService.signUp(userSignUpDetails);
     if(userAccount != null) {
-      return ResponseEntity.status(HttpStatus.OK).body(new UserSignupResponse(HttpStatus.OK.value(), true, "User Account created successfully"));
+      return ResponseEntity.status(HttpStatus.OK).body(new UserSignupResponse(HttpStatus.OK.value(), true, "User Account created successfully with acount number " + userAccount.getAccountNumber()));
     }
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "User could not be created"));
   }
@@ -61,7 +62,7 @@ public class AuthController {
     ArrayList<UserAccount> allUsers = authService.getAllUserAccounts();
     for (UserAccount userAccount : allUsers) {
       System.out.println("|" + userAccount.getAccountName() + "|" + userAccount.getAccountPassword() + "|" + userAccount.getAccountNumber() + "|"
-          + userAccount.getInitialDeposit());
+          + userAccount.getBalance());
     }
   }
 }

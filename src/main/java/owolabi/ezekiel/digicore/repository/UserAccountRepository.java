@@ -14,7 +14,7 @@ public class UserAccountRepository {
     UserAccount userAccount = new UserAccount();
     userAccount.setAccountName(signUpDetails.getAccountName());
     userAccount.setAccountPassword(signUpDetails.getAccountPassword());
-    userAccount.setInitialDeposit(signUpDetails.getInitialDeposit());
+    userAccount.setBalance(signUpDetails.getInitialDeposit());
     userAccount.setAccountNumber("00000000" + (userAccounts.size() + 1));
     userAccounts.add(userAccount);
     return userAccount;
@@ -30,8 +30,17 @@ public class UserAccountRepository {
   }
 
   public boolean checkAccountExists(String accountName){
-    for(UserAccount userAccount:userAccounts){
+    for(UserAccount userAccount: userAccounts){
       if(userAccount.getAccountName().equalsIgnoreCase(accountName)){
+        return true;
+      }
+    }
+    return false;
+  }
+
+  public boolean checkAccountNumberExists(String accountNumber){
+    for(UserAccount userAccount: userAccounts){
+      if(userAccount.getAccountNumber().equalsIgnoreCase(accountNumber)){
         return true;
       }
     }

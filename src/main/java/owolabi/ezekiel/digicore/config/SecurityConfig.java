@@ -29,9 +29,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     http.httpBasic().disable().csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and().authorizeRequests().antMatchers("/auth/*").permitAll()
-        .anyRequest().authenticated()
+        .antMatchers("/*").permitAll()
         .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
   }
-
 
 }

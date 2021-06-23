@@ -32,8 +32,12 @@ public class AuthService {
     return null;
   }
 
-  public boolean accountExists(String accountNumber){
-    return userAccountRepository.checkAccountExists(accountNumber);
+  public boolean accountExists(String accountName){
+    return userAccountRepository.checkAccountExists(accountName);
+  }
+
+  public boolean accountNumberExists(String accountNumber){
+    return userAccountRepository.checkAccountNumberExists(accountNumber);
   }
 
   public UserAccount findByAccountNumber(String accountNumber){

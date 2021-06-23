@@ -4,16 +4,16 @@ public class UserAccount {
   private String accountName;
   private String accountPassword;
   private String accountNumber;
-  private Double initialDeposit;
+  private Double balance;
 
   public UserAccount() {
   }
 
-  public UserAccount(String accountName, String accountPassword, String accountNumber, Double initialDeposit) {
+  public UserAccount(String accountName, String accountPassword, String accountNumber, Double balance) {
     this.accountName = accountName;
     this.accountPassword = accountPassword;
     this.accountNumber = accountNumber;
-    this.initialDeposit = initialDeposit;
+    this.balance = balance;
   }
 
   public String getAccountName() {
@@ -40,11 +40,11 @@ public class UserAccount {
     this.accountNumber = accountNumber;
   }
 
-  public Double getInitialDeposit() {
-    return initialDeposit;
+  public Double getBalance() {
+    return balance;
   }
 
-  public void setInitialDeposit(Double initialDeposit) {
-    this.initialDeposit = initialDeposit;
+  public void setBalance(Double balance) {
+    this.balance = balance;
   }
 }

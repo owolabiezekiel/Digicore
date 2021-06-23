@@ -15,7 +15,7 @@ public class CustomUserDetails implements UserDetails {
     CustomUserDetails c = new CustomUserDetails();
     c.accountNumber = userAccount.getAccountNumber();
     c.password = userAccount.getAccountPassword();
-    c.initialDeposit = userAccount.getInitialDeposit();
+    c.initialDeposit = userAccount.getBalance();
     return c;
   }
 
