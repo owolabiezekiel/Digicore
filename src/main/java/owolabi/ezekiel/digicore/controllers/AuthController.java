@@ -18,7 +18,7 @@ public class AuthController {
   @Autowired
   private JwtProvider jwtProvider;
 
-  @PostMapping("/register")
+  @PostMapping("/create_account")
   public ResponseEntity<Object> registerUser(@RequestBody UserSignUpRequestDto userSignUpDetails) {
     if(userSignUpDetails.getAccountPassword() == null || userSignUpDetails.getAccountName() == null || userSignUpDetails.getInitialDeposit() == null){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "Some required fields are missing"));

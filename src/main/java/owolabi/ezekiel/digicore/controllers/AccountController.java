@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.*;
 import owolabi.ezekiel.digicore.config.jwt.JwtFilter;
 import owolabi.ezekiel.digicore.config.jwt.JwtProvider;
 import owolabi.ezekiel.digicore.dtos.*;
+import owolabi.ezekiel.digicore.entities.Transaction;
 import owolabi.ezekiel.digicore.entities.UserAccount;
 import owolabi.ezekiel.digicore.services.AccountService;
 import owolabi.ezekiel.digicore.services.AuthService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 
 
 @RestController
@@ -122,7 +124,36 @@ public class AccountController {
     }
     accountService.withdraw(withdrawRequestDto.getAccountNumber(), withdrawRequestDto.getAmount());
     return ResponseEntity.status(HttpStatus.OK).body(new DepositResponse(HttpStatus.OK.value(), true, "Withdrawal transaction created successfully"));
+  }
 
+
+  @GetMapping("/account_statement/{accountNumber}")
+  public ResponseEntity<Object> getAccountStatement(HttpServletRequest request, @PathVariable("accountNumber") String accountNumber) {
+    String token = jwtFilter.getTokenFromRequest(request);
+    if(token == null){
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new FailedRequestResponse(false, "Please provide token"));
+    }
+
+    boolean userAccountExists = authService.accountNumberExists(accountNumber);
+    if(!userAccountExists){
+      return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new FailedRequestResponse(false, "No account with this number exists."));
+    }
+
+    if (!jwtProvider.validateToken(token)){
+      return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "Invalid Token"));
+    }
+
+    String accountNumberFromToken = jwtProvider.getAccountNumberFromToken(token);
+    if(!accountNumberFromToken.equalsIgnoreCase(accountNumber)){
+      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new FailedRequestResponse(false, "Oops. You are not the owner of this account"));
+    }
+
+    ArrayList<Transaction> accountStatement = accountService.getAccountStatement(accountNumber);
+    if(accountStatement == null || accountStatement.size() <= 0){
+      return ResponseEntity.status(HttpStatus.OK).body(new DepositResponse(HttpStatus.OK.value(), true, "You have not performed any transaction yet"));
+    }
+
+    return ResponseEntity.status(HttpStatus.OK).body(accountStatement);
   }
 
 

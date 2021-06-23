@@ -9,6 +9,7 @@ import owolabi.ezekiel.digicore.entities.UserAccount;
 import owolabi.ezekiel.digicore.repository.TransactionRepository;
 import owolabi.ezekiel.digicore.repository.UserAccountRepository;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -26,7 +27,7 @@ public class AccountService {
     transaction.setTransactionType(TransactionType.DEPOSIT);
     transaction.setAmount(amount);
     transaction.setTransactionBalance(balance);
-    transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString());
+    transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString() + " to my account.");
     transaction.setTransactionDate(new Date());
     return transactionRepository.createTransaction(transaction);
   }
@@ -38,7 +39,7 @@ public class AccountService {
     transaction.setTransactionType(TransactionType.DEPOSIT);
     transaction.setAmount(amount);
     transaction.setTransactionBalance(balance);
-    transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString());
+    transaction.setNarration("I deposited " + amount + " Naira on " + new Date().toString() + " to " + creditAccountNumber);
     transaction.setTransactionDate(new Date());
     return transactionRepository.createTransaction(transaction);
   }
@@ -53,5 +54,9 @@ public class AccountService {
     transaction.setNarration("I withdrew " + amount + " Naira on " + new Date().toString());
     transaction.setTransactionDate(new Date());
     return transactionRepository.createTransaction(transaction);
+  }
+
+  public ArrayList<Transaction> getAccountStatement(String accountNumber){
+    return transactionRepository.getTransactionsForAccountNumber(accountNumber);
   }
 }
