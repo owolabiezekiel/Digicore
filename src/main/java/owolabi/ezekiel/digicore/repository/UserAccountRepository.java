@@ -20,9 +20,14 @@ public class UserAccountRepository {
     return userAccount;
   }
 
+
+
   public UserAccount getUserByAccountNumber(String accountNumber){
     return userAccounts.getOrDefault(accountNumber, null);
   }
+
+
+
 
   public boolean checkAccountExists(String accountName){
     for(Map.Entry<String, UserAccount> account :
@@ -34,6 +39,9 @@ public class UserAccountRepository {
     return false;
   }
 
+
+
+
   public boolean checkAccountNumberExists(String accountNumber){
     for(Map.Entry<String, UserAccount> account :
         userAccounts.entrySet()){
@@ -44,6 +52,9 @@ public class UserAccountRepository {
     return false;
   }
 
+
+
+
   public double creditMyAccount(String accountNumber, double amount){
     UserAccount accountToCredit = userAccounts.get(accountNumber);
     accountToCredit.setBalance(accountToCredit.getBalance() + amount);
@@ -52,6 +63,9 @@ public class UserAccountRepository {
     return balance;
   }
 
+
+
+
   public double debitAccount(String accountNumber, double amount){
     UserAccount accountToDebit = userAccounts.get(accountNumber);
     accountToDebit.setBalance(accountToDebit.getBalance() - amount);
@@ -59,6 +73,9 @@ public class UserAccountRepository {
     userAccounts.put(accountNumber, accountToDebit);
     return balance;
   }
+
+
+
 
   public double creditAnotherAccount(String accountNumberToCredit, String accountNumberToDebit, double amount){
     UserAccount accountToCredit = userAccounts.get(accountNumberToCredit);
@@ -70,6 +87,8 @@ public class UserAccountRepository {
     userAccounts.put(accountNumberToDebit, accountToDebit);
     return balance;
   }
+
+
 
   public Map<String, UserAccount> getAllUserAccounts(){
     return userAccounts;

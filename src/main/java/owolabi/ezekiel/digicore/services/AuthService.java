@@ -20,6 +20,8 @@ public class AuthService {
     return userAccountRepository.saveUser(userSignUpDto);
   }
 
+
+
   public UserAccount login(String accountNumber, String password){
     UserAccount userAccount = findByAccountNumber(accountNumber);
     if(userAccount != null){
@@ -30,13 +32,22 @@ public class AuthService {
     return null;
   }
 
+
+
+
   public boolean accountExists(String accountName){
     return userAccountRepository.checkAccountExists(accountName);
   }
 
+
+
+
   public boolean accountNumberExists(String accountNumber){
     return userAccountRepository.checkAccountNumberExists(accountNumber);
   }
+
+
+
 
   public UserAccount findByAccountNumber(String accountNumber){
     return userAccountRepository.getUserByAccountNumber(accountNumber);

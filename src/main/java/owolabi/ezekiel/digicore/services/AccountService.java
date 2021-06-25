@@ -30,6 +30,10 @@ public class AccountService {
     return transactionRepository.createTransaction(transaction);
   }
 
+
+
+
+
   public Transaction depositToOthers(String creditAccountNumber, String debitAccountNumber, double amount){
     double balance = userAccountRepository.creditAnotherAccount(creditAccountNumber, debitAccountNumber, amount);
     Transaction transaction = new Transaction();
@@ -42,6 +46,10 @@ public class AccountService {
     return transactionRepository.createTransaction(transaction);
   }
 
+
+
+
+
   public Transaction withdraw(String accountNumber, double amount){
     double balance = userAccountRepository.debitAccount(accountNumber, amount);
     Transaction transaction = new Transaction();
@@ -53,6 +61,10 @@ public class AccountService {
     transaction.setTransactionDate(new Date());
     return transactionRepository.createTransaction(transaction);
   }
+
+
+
+
 
   public ArrayList<Transaction> getAccountStatement(String accountNumber){
     return transactionRepository.getTransactionsForAccountNumber(accountNumber);

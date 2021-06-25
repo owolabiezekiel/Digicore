@@ -57,6 +57,15 @@ public class AccountController {
     return ResponseEntity.status(HttpStatus.OK).body(new GetUserAccountResponse(HttpStatus.OK.value(), true, "Welcome to your account", thisUser));
   }
 
+
+
+
+
+
+
+
+
+
   @PostMapping("/deposit")
   public ResponseEntity<Object> depositMoney (HttpServletRequest request, @RequestBody DepositRequestDTO depositRequestDTO){
     String token = jwtFilter.getTokenFromRequest(request);
@@ -84,6 +93,14 @@ public class AccountController {
     }
     return ResponseEntity.status(HttpStatus.OK).body(new DepositResponse(HttpStatus.OK.value(), true, "Deposit transaction created successfully"));
   }
+
+
+
+
+
+
+
+
 
   @PostMapping("/withdrawal")
   public ResponseEntity<Object> withdrawMoney(HttpServletRequest request, @RequestBody WithdrawRequestDto withdrawRequestDto){
@@ -125,6 +142,12 @@ public class AccountController {
     accountService.withdraw(withdrawRequestDto.getAccountNumber(), withdrawRequestDto.getAmount());
     return ResponseEntity.status(HttpStatus.OK).body(new DepositResponse(HttpStatus.OK.value(), true, "Withdrawal transaction created successfully"));
   }
+
+
+
+
+
+
 
 
   @GetMapping("/account_statement/{accountNumber}")

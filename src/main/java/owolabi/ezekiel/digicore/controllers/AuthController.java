@@ -24,18 +24,14 @@ public class AuthController {
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "Some required fields are missing"));
     }
 
-
     boolean userAccountExists = authService.accountExists(userSignUpDetails.getAccountName());
     if(userAccountExists){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "An account with this username already exists. Please sign in instead"));
     }
 
-
-
     if(userSignUpDetails.getInitialDeposit() < 500.0){
       return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "Minimum initial balance required is 500"));
     }
-
 
     UserAccount userAccount = authService.signUp(userSignUpDetails);
     if(userAccount != null) {
@@ -43,6 +39,10 @@ public class AuthController {
     }
     return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new FailedRequestResponse(false, "User could not be created"));
   }
+
+
+
+
 
   @PostMapping("/login")
   public ResponseEntity<Object> loginUser(@RequestBody UserLoginRequestDto userLoginRequestDto) {
