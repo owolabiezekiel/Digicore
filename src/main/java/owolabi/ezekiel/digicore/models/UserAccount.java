@@ -1,4 +1,4 @@
-package owolabi.ezekiel.digicore.entities;
+package owolabi.ezekiel.digicore.models;
 
 public class UserAccount {
   private String accountName;

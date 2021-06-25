@@ -2,8 +2,8 @@ package owolabi.ezekiel.digicore.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import owolabi.ezekiel.digicore.entities.Transaction;
-import owolabi.ezekiel.digicore.entities.TransactionType;
+import owolabi.ezekiel.digicore.models.Transaction;
+import owolabi.ezekiel.digicore.models.TransactionType;
 import owolabi.ezekiel.digicore.repository.TransactionRepository;
 import owolabi.ezekiel.digicore.repository.UserAccountRepository;
 

@@ -1,4 +1,4 @@
-package owolabi.ezekiel.digicore.dtos;
+package owolabi.ezekiel.digicore.dtos.request;
 
 public class UserSignUpRequestDto {
   private String accountName;

@@ -1,4 +1,4 @@
-package owolabi.ezekiel.digicore.dtos;
+package owolabi.ezekiel.digicore.dtos.response;
 
 public class UserLoginResponse {
   private boolean success;

@@ -1,8 +1,8 @@
 package owolabi.ezekiel.digicore.repository;
 
 import org.springframework.stereotype.Service;
-import owolabi.ezekiel.digicore.dtos.UserSignUpRequestDto;
-import owolabi.ezekiel.digicore.entities.UserAccount;
+import owolabi.ezekiel.digicore.dtos.request.UserSignUpRequestDto;
+import owolabi.ezekiel.digicore.models.UserAccount;
 import java.util.HashMap;
 import java.util.Map;
 

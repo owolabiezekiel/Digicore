@@ -2,7 +2,7 @@ package owolabi.ezekiel.digicore.config;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import owolabi.ezekiel.digicore.entities.UserAccount;
+import owolabi.ezekiel.digicore.models.UserAccount;
 
 import java.util.Collection;
 

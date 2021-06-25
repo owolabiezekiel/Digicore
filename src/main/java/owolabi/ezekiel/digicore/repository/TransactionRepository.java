@@ -1,7 +1,7 @@
 package owolabi.ezekiel.digicore.repository;
 
 import org.springframework.stereotype.Service;
-import owolabi.ezekiel.digicore.entities.Transaction;
+import owolabi.ezekiel.digicore.models.Transaction;
 
 import java.util.ArrayList;
 

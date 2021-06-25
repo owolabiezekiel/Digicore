@@ -1,14 +1,18 @@
-package owolabi.ezekiel.digicore.dtos;
+package owolabi.ezekiel.digicore.dtos.response;
 
-public class UserSignupResponse {
+import owolabi.ezekiel.digicore.models.UserAccount;
+
+public class GetUserAccountResponse {
   private int responseCode;
   private boolean success;
   private String message;
+  private UserAccount userAccount;
 
-  public UserSignupResponse(int responseCode, boolean success, String message) {
+  public GetUserAccountResponse(int responseCode, boolean success, String message, UserAccount userAccount) {
     this.responseCode = responseCode;
     this.success = success;
     this.message = message;
+    this.userAccount = userAccount;
   }
 
   public int getResponseCode() {
@@ -33,5 +37,13 @@ public class UserSignupResponse {
 
   public void setMessage(String message) {
     this.message = message;
+  }
+
+  public UserAccount getUserAccount() {
+    return userAccount;
+  }
+
+  public void setUserAccount(UserAccount userAccount) {
+    this.userAccount = userAccount;
   }
 }

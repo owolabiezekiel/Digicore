@@ -5,8 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import owolabi.ezekiel.digicore.config.jwt.JwtProvider;
-import owolabi.ezekiel.digicore.dtos.*;
-import owolabi.ezekiel.digicore.entities.UserAccount;
+import owolabi.ezekiel.digicore.dtos.request.UserLoginRequestDto;
+import owolabi.ezekiel.digicore.dtos.request.UserSignUpRequestDto;
+import owolabi.ezekiel.digicore.dtos.response.FailedRequestResponse;
+import owolabi.ezekiel.digicore.dtos.response.UserLoginResponse;
+import owolabi.ezekiel.digicore.dtos.response.UserSignupResponse;
+import owolabi.ezekiel.digicore.models.UserAccount;
 import owolabi.ezekiel.digicore.services.AuthService;
 
 

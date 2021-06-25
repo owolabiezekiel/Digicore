@@ -7,9 +7,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import owolabi.ezekiel.digicore.config.jwt.JwtFilter;
 import owolabi.ezekiel.digicore.config.jwt.JwtProvider;
-import owolabi.ezekiel.digicore.dtos.*;
-import owolabi.ezekiel.digicore.entities.Transaction;
-import owolabi.ezekiel.digicore.entities.UserAccount;
+import owolabi.ezekiel.digicore.dtos.request.DepositRequestDTO;
+import owolabi.ezekiel.digicore.dtos.request.WithdrawRequestDto;
+import owolabi.ezekiel.digicore.dtos.response.DepositResponse;
+import owolabi.ezekiel.digicore.dtos.response.FailedRequestResponse;
+import owolabi.ezekiel.digicore.dtos.response.GetUserAccountResponse;
+import owolabi.ezekiel.digicore.models.Transaction;
+import owolabi.ezekiel.digicore.models.UserAccount;
 import owolabi.ezekiel.digicore.services.AccountService;
 import owolabi.ezekiel.digicore.services.AuthService;
 

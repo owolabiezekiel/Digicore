@@ -1,11 +1,11 @@
-package owolabi.ezekiel.digicore.dtos;
+package owolabi.ezekiel.digicore.dtos.response;
 
-public class DepositResponse {
+public class UserSignupResponse {
   private int responseCode;
   private boolean success;
   private String message;
 
-  public DepositResponse(int responseCode, boolean success, String message) {
+  public UserSignupResponse(int responseCode, boolean success, String message) {
     this.responseCode = responseCode;
     this.success = success;
     this.message = message;

@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 import owolabi.ezekiel.digicore.config.CustomUserDetails;
-import owolabi.ezekiel.digicore.entities.UserAccount;
+import owolabi.ezekiel.digicore.models.UserAccount;
 import owolabi.ezekiel.digicore.services.AuthService;
 
 @Component
