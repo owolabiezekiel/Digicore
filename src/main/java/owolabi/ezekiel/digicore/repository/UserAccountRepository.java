@@ -1,8 +1,11 @@
 package owolabi.ezekiel.digicore.repository;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import owolabi.ezekiel.digicore.dtos.request.UserSignUpRequestDto;
 import owolabi.ezekiel.digicore.models.UserAccount;
+import owolabi.ezekiel.digicore.utilities.AccountNumberUtils;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,7 +18,8 @@ public class UserAccountRepository {
     userAccount.setAccountName(signUpDetails.getAccountName());
     userAccount.setAccountPassword(signUpDetails.getAccountPassword());
     userAccount.setBalance(signUpDetails.getInitialDeposit());
-    userAccount.setAccountNumber("00000000" + (userAccounts.size() + 1));
+    String accountNumber = AccountNumberUtils.generateAccountNumber(userAccounts.size() + 1);
+    userAccount.setAccountNumber(accountNumber);
     userAccounts.put(userAccount.getAccountNumber(), userAccount);
     return userAccount;
   }
