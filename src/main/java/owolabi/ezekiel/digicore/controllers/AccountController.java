@@ -14,8 +14,8 @@ import owolabi.ezekiel.digicore.dtos.response.FailedRequestResponse;
 import owolabi.ezekiel.digicore.dtos.response.GetUserAccountResponse;
 import owolabi.ezekiel.digicore.models.Transaction;
 import owolabi.ezekiel.digicore.models.UserAccount;
-import owolabi.ezekiel.digicore.services.AccountService;
-import owolabi.ezekiel.digicore.services.AuthService;
+import owolabi.ezekiel.digicore.services.implementation.AccountServiceImplementation;
+import owolabi.ezekiel.digicore.services.implementation.AuthServiceImplementation;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -25,10 +25,10 @@ import java.util.ArrayList;
 @RequestMapping(path = "/account")
 public class AccountController {
   @Autowired
-  private AccountService accountService;
+  private AccountServiceImplementation accountService;
 
   @Autowired
-  private AuthService authService;
+  private AuthServiceImplementation authService;
 
 
   @Autowired

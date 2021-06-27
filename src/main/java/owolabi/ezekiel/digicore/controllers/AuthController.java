@@ -11,14 +11,14 @@ import owolabi.ezekiel.digicore.dtos.response.FailedRequestResponse;
 import owolabi.ezekiel.digicore.dtos.response.UserLoginResponse;
 import owolabi.ezekiel.digicore.dtos.response.UserSignupResponse;
 import owolabi.ezekiel.digicore.models.UserAccount;
-import owolabi.ezekiel.digicore.services.AuthService;
+import owolabi.ezekiel.digicore.services.implementation.AuthServiceImplementation;
 
 
 @RestController
 @RequestMapping(path = "/auth")
 public class AuthController {
   @Autowired
-  private AuthService authService;
+  private AuthServiceImplementation authService;
   @Autowired
   private JwtProvider jwtProvider;
 

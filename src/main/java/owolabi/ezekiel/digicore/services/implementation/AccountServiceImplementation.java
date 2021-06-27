@@ -1,4 +1,4 @@
-package owolabi.ezekiel.digicore.services;
+package owolabi.ezekiel.digicore.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -6,13 +6,14 @@ import owolabi.ezekiel.digicore.models.Transaction;
 import owolabi.ezekiel.digicore.models.TransactionType;
 import owolabi.ezekiel.digicore.repository.TransactionRepository;
 import owolabi.ezekiel.digicore.repository.UserAccountRepository;
+import owolabi.ezekiel.digicore.services.interfaces.AccountService;
 
 import java.util.ArrayList;
 import java.util.Date;
 
 
 @Service
-public class AccountService {
+public class AccountServiceImplementation implements AccountService {
   @Autowired
   private UserAccountRepository userAccountRepository;
   @Autowired
