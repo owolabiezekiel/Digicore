@@ -5,7 +5,7 @@ public class AccountNumberUtils {
     String accountNumber = "";
     String accountsSizeString = currentUserAccountsSize +"";
     int accountsSizeStringLength = accountsSizeString.length();
-    for(int i = 9; i > accountsSizeStringLength; i--){
+    for(int i = 10; i > accountsSizeStringLength; i--){
       accountNumber += "0";
     }
     accountNumber += currentUserAccountsSize;

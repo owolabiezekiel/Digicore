@@ -1,6 +1,5 @@
 package owolabi.ezekiel.digicore.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import owolabi.ezekiel.digicore.dtos.request.UserSignUpRequestDto;
 import owolabi.ezekiel.digicore.models.UserAccount;

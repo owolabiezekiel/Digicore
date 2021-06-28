@@ -10,6 +10,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import owolabi.ezekiel.digicore.config.jwt.JwtAuthenticationEntryPoint;
 import owolabi.ezekiel.digicore.config.jwt.JwtFilter;
 
 @Configuration
@@ -18,6 +19,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Autowired
   private JwtFilter jwtFilter;
 
+  @Autowired
+  private JwtAuthenticationEntryPoint unathorizedHandler;
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -25,11 +29,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    http.httpBasic().disable().csrf().disable()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and().authorizeRequests().antMatchers("/auth/*").permitAll()
-        .antMatchers("/*").permitAll()
-        .and().addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
+    http.cors().and().csrf().disable()
+        .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)
+        .authorizeRequests().antMatchers("/auth/*").permitAll()
+        .anyRequest().authenticated()
+        .and()
+        .exceptionHandling().authenticationEntryPoint(unathorizedHandler)
+        .and()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
   }
 
 }

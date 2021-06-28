@@ -6,6 +6,7 @@ import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.http.HttpServletResponse;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -26,7 +27,7 @@ public class JwtProvider {
       Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token);
       return true;
     } catch (Exception e) {
-      System.out.println(e.getMessage());
+      System.out.println(e.getClass() + "\n" + e.getMessage());
     }
     return false;
   }
