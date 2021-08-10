@@ -26,11 +26,8 @@ import java.util.ArrayList;
 public class AccountController {
   @Autowired
   private AccountServiceImplementation accountService;
-
   @Autowired
   private AuthServiceImplementation authService;
-
-
   @Autowired
   private JwtFilter jwtFilter;
   @Autowired
@@ -60,7 +57,6 @@ public class AccountController {
     UserAccount thisUser = authService.findByAccountNumber(accountNumber);
     return ResponseEntity.status(HttpStatus.OK).body(new GetUserAccountResponse(HttpStatus.OK.value(), true, "Welcome to your account", thisUser));
   }
-
 
 
 

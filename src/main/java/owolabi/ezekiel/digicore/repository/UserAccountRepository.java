@@ -17,10 +17,11 @@ public class UserAccountRepository {
     userAccount.setAccountName(signUpDetails.getAccountName());
     userAccount.setAccountPassword(signUpDetails.getAccountPassword());
     userAccount.setBalance(signUpDetails.getInitialDeposit());
-    String accountNumber = AccountNumberUtils.generateAccountNumber(userAccounts.size() + 1);
+    String accountNumber = AccountNumberUtils.generateAccountNumber(this.accountCount() + 1);
     userAccount.setAccountNumber(accountNumber);
     userAccounts.put(userAccount.getAccountNumber(), userAccount);
     return userAccount;
+
   }
 
 
