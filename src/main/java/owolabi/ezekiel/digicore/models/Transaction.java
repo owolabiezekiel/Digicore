@@ -1,8 +1,9 @@
 package owolabi.ezekiel.digicore.models;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Transaction {
+public class Transaction implements Serializable {
   private String accountNumber;
   private Date transactionDate;
   private TransactionType transactionType;

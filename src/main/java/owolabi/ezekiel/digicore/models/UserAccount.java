@@ -2,7 +2,9 @@ package owolabi.ezekiel.digicore.models;
 
 import io.swagger.annotations.ApiModelProperty;
 
-public class UserAccount {
+import java.io.Serializable;
+
+public class UserAccount implements Serializable {
   @ApiModelProperty(value = "First name before last name")
   private String accountName;
   @ApiModelProperty(value = "Password has to be more than 5 characters in length")

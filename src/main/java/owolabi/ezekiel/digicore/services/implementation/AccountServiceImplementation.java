@@ -1,6 +1,7 @@
 package owolabi.ezekiel.digicore.services.implementation;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.stereotype.Service;
 import owolabi.ezekiel.digicore.models.Transaction;
 import owolabi.ezekiel.digicore.models.TransactionType;
@@ -13,6 +14,7 @@ import java.util.Date;
 
 
 @Service
+@CacheConfig(cacheNames = {"Account"})
 public class AccountServiceImplementation implements AccountService {
   @Autowired
   private UserAccountRepository userAccountRepository;
